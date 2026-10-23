@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import '../data/livres_data.dart';
-import '../models/livre.dart';
+import '../widgets/livre_card.dart';
+import 'detail_screen.dart';
 
 class CatalogueScreen extends StatelessWidget {
   const CatalogueScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Q2.7 : Filtrer les livres qui sont des nouveautés
     final livresNouveautes = livres.where((l) => l.nouveaute).toList();
 
     return Column(
@@ -28,21 +28,32 @@ class CatalogueScreen extends StatelessWidget {
             itemCount: livresNouveautes.length,
             itemBuilder: (context, index) {
               final livre = livresNouveautes[index];
-              return Container(
-                width: 110,
-                margin: const EdgeInsets.symmetric(horizontal: 8),
-                decoration: BoxDecoration(
-                  color: livre.couleur,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                alignment: Alignment.center,
-                padding: const EdgeInsets.all(8),
-                child: Text(
-                  livre.titre,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+              return GestureDetector(
+                onTap: () {
+                  // Q4.7 : Ouvrir l'écran de détail au clic sur une nouveauté
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailScreen(livre: livre),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: 110,
+                  margin: const EdgeInsets.symmetric(horizontal: 8),
+                  decoration: BoxDecoration(
+                    color: livre.couleur,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(8),
+                  child: Text(
+                    livre.titre,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               );
@@ -52,7 +63,7 @@ class CatalogueScreen extends StatelessWidget {
 
         const Divider(height: 30),
 
-        // --- Section Tout le catalogue (ListView.separated vertical) ---
+        // --- Section Tout le catalogue (ListView standard au lieu de separated car la Card gère les marges) ---
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 12.0),
           child: Text(
@@ -61,50 +72,26 @@ class CatalogueScreen extends StatelessWidget {
           ),
         ),
         Expanded(
-          // Q2.8 : Expanded obligatoire dans une Column pour un ListView vertical
-          child: ListView.separated(
-            padding: const EdgeInsets.all(8),
+          child: ListView.builder(
             itemCount: livres.length,
-            separatorBuilder: (context, index) =>
-                const Divider(indent: 72), // Q2.6 : Divider indenté
             itemBuilder: (context, index) {
               final livre = livres[index];
-              return livreTileForCatalog(
-                livre,
-              ); // Utilisation d'une fonction de tuile
+              // Q4.4 & Q4.7 : Utilisation de LivreCard et navigation vers DetailScreen
+              return LivreCard(
+                livre: livre,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailScreen(livre: livre),
+                    ),
+                  );
+                },
+              );
             },
           ),
         ),
       ],
-    );
-  }
-
-  // Petite fonction locale pour afficher un livre dans le catalogue
-  Widget livreTileForCatalog(Livre livre) {
-    return ListTile(
-      leading: CircleAvatar(
-        backgroundColor: livre.couleur,
-        child: Text(
-          livre.titre[0],
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      title: Text(livre.titre),
-      subtitle: Text('${livre.auteur} – ${livre.annee}'),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            livre.note.toString(),
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(width: 4),
-          const Icon(Icons.star, color: Colors.amber, size: 20),
-        ],
-      ),
     );
   }
 }
