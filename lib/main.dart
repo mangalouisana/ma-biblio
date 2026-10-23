@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/parametres_screens.dart';
-import 'screens/catalogue_screen.dart';
+import 'screens/ma_liste_screen.dart';
 
 void main() {
   runApp(const MaBiblioApp());
@@ -35,9 +35,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MaBiblio - Catalogue'),
+        title: const Text('MaBiblio - Ma Liste'),
         actions: [
-          // Q1.6 : Bouton paramètres dans l'AppBar
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
@@ -51,7 +50,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: const CatalogueScreen(), // Affiche le catalogue (Partie 02)
+      body: const MaListeScreen(), // Affiche MaListeScreen (Partie 03)
     );
   }
 }
