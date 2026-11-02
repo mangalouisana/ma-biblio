@@ -1,16 +1,31 @@
 # ma_biblio
 
-A new Flutter project.
+Application mobile d'emprunt et d'achat de livres développée en **Flutter** dans le cadre du projet académique.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## 🎨 Design System & Charte Graphique
+- **Fond principal :** `#FDFBF7` (Sand / Parchemin)
+- **Conteneurs & Cartes :** `#6D4C41` (Brun Moka)
+- **Boutons & Accents :** `#D7CCC8` (Sable clair)
+- **Typographie :** Serif (Titres) / Sans-Serif (Textes)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## 📱 Modules du Projet & Maquettes Figma
+1. **Module 1 : Authentification**
+   - Écran d'inscription (`SignupScreen`)
+   - Écran de connexion (`SigninScreen`)
+2. **Module 2 : Catalogue & Découverte**
+   - Écran d'accueil / Catalogue (`DashboardScreen`)
+3. **Module 3 : Gestion & Profil**
+   - Écran de gestion et profil utilisateur
+
+
+
+## 🚀 Installation & Lancement
+```bash
+git clone [https://github.com/mangalouisana/ma-biblio.git](https://github.com/mangalouisana/ma-biblio.git)
+cd ma-biblio
+flutter pub get
+flutter run
