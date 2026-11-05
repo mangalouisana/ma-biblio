@@ -168,7 +168,7 @@ class _SignupScreenState extends State<SignupScreen>
                             ],
                           ),
                           const Text(
-                            'Book Shop',
+                            'Papyrus Pro',
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -185,7 +185,7 @@ class _SignupScreenState extends State<SignupScreen>
                       ),
                       const SizedBox(height: 6),
                       const Text(
-                        'Bienvenue sur Book Shop',
+                        'Bienvenue sur Papyrus Pro',
                         style: TextStyle(
                           fontSize: 13,
                           color: Colors.grey,

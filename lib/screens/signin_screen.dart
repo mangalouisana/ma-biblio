@@ -26,7 +26,7 @@ class SigninScreen extends StatelessWidget {
                     const Expanded(
                       child: Center(
                         child: Text(
-                          'Book Shop',
+                          'Papyrus Pro',
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
